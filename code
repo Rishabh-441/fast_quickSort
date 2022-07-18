@@ -1,0 +1,50 @@
+//fast quick sort:
+import java.lang.*;
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    int[] arr = {12,23,34,122,31,111,543,321,876,654,1};
+	    quickSort(arr, 0, arr.length - 1);
+		System.out.println(Arrays.toString(arr));
+	}
+	
+	private static void quickSort(int[] arr, int s, int e) {
+	    while (s <= e) {
+	        if (s == e) {
+	            return;
+	        }
+	        else {
+	            int mid = partition(arr, s, e);
+	            if (mid - s > e - mid) {
+	                quickSort(arr, mid + 1, e);
+	                e = mid - 1;
+	            }
+	            else {
+	                quickSort(arr, s, mid - 1);
+	                s = mid + 1;
+	            }
+	        }
+	    }
+	}
+	
+	private static int partition(int[] arr, int s, int e) {
+	    System.out.println(Arrays.toString(arr));
+	    int pivot = arr[s];
+	    int j = s;
+	    int i;
+        for (i = s+1; i <= e; i++) {
+	        if (arr[i] < pivot) {
+	            j++;
+	            int temp = arr[i];
+	            arr[i] = arr[j];
+	            arr[j] = temp;
+	        }
+	    }
+	    int temp = arr[s];
+	    arr[s] = arr[j];
+        arr[j] = temp;
+        
+        return j;
+	}
+}
